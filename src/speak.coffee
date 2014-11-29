@@ -22,10 +22,12 @@ Speak = require '../deps/Speak.js'
 
 module.exports = (robot) ->
 
+  robot.respond /say something/, (msg) ->
+    msg.reply 'Want to hear something random?'
+
   robot.respond /say something stupid/, (msg) ->
     speaker = new Speak()
     msg.reply speaker.getStatement(null, 15)
-    return;
 
   robot.respond /say something ([A-Z]||[a-z]*)?/, (msg) ->
     speaker = new Speak()
