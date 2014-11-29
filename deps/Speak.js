@@ -1,30 +1,6 @@
-/**
- * A list of word exceptions/triggers for a SpeakComponents.
- * @param    Object    Dictionary of callbacks for specific words/regular expressions as the property.
- */
-function WordException(dictionary) {
-    'use strict';
-    this.dictionary = dictionary || {};
-}
-
-/**
- * Finds and replaces all word exceptions in a statement.
- * @param    String    Statement
- * @returns    String    Statement
- */
-WordException.prototype.find = function (statement) {
-    'use strict';
-    var i, results;
-    for (i in this.dictionary) {
-        if (this.dictionary.hasOwnProperty(i)) {
-            results = new RegExp(i).exec(statement);
-            if (results !== null) {
-                statement = this.dictionary[i](statement);
-            }
-        }
-    }
-    return statement;
-};
+var Mood = require('./Mood');
+var SpeechLibrary = require('./SpeechLibrary');
+var WordException = require('./WordException');
 
 /**
  * Returns a random element from an arrary
@@ -96,50 +72,9 @@ function requirementFailed(message) {
 }
 
 /**
- * A SpeakComponent that defines collections of words and rules
- * @param    String            Name of the library
- * @param    String            Token for segment tokenization
- * @param    String            Description of the library
- * @param    Function        Callback to fire when the symbol is discovered
- * @param    Array            List of words
- * @param    WordException    A WordException SpeakComponent
- */
-function SpeechLibrary(name, token, description, list, action, exceptions) {
-    'use strict';
-    this.name = name || requirementFailed('Name is required');
-    this.token = token || requirementFailed('Token is required');
-    this.description = description || '';
-    this.action = action || function (statement, position, mood, speak) {
-        return getRandomItem(this.list);
-    };
-    this.list = list || [];
-    this.exceptions = exceptions || new WordException();
-}
-
-/**
- * A SpeakComponent that defines mood.
- * @param    String            Name of the mood.
- * @param    Array            List of influencers.
- * @param    Array            List of punctations.
- * @param    Array            List of emoticons.
- * @param    WordException    A WordException SpeakComponent
- */
-function Mood(name, influencers, punctuations, emoticons, filter, exceptions) {
-    'use strict';
-    this.name = name || requirementFailed('Name is required');
-    this.influencers = influencers || [];
-    this.punctuations = punctuations || [];
-    this.emoticons = emoticons || [];
-    this.filter = filter || function(statement) {
-      return statement;
-    };
-    this.exceptions = exceptions || new WordException();
-}
-
-/**
  * A collection of SpeakComponents.
  */
-function Speak(libraries, moods, statements, segments) {
+var Speak = function (libraries, moods, statements, segments) {
     'use strict';
     // SpeechLibraries
     this.libraries = libraries || [
@@ -484,3 +419,5 @@ Speak.prototype.getStatement = function (moodName, stupidity, statements, segmen
 
     return result;
 };
+
+module.exports = Speak;
