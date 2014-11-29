@@ -23,11 +23,31 @@ Speak = require('../src/speak.js')
 module.exports = (robot) ->
   robot.respond /say something ([A-Z]||[a-z]*)?/, (msg) ->
     if(msg.match[1])
+      adjs = ['angry', 'jealous', 'fearful', 'paranoid', 'curious']
       moods = ['anger', 'jealousy', 'fear', 'paranoia', 'curiosity', 'joyful', 'excited', 'calm', 'ashamed', 'apathetic', 'logical']
       if(moods.indexOf(msg.match[0].trim()) >= -1)
-        msg.reply new Speak().getStatement(msg.match[1])
+        msg.reply new Speak().getStatement(msg.match[0].trim())
       else 
-        msg.reply new Speak().getStatement()
+        switch(msg.match[0].trim())
+          case adjs[0]
+            matcher = moods[0]
+
+          case adjs[1]
+            matcher = moods[1]
+
+          case adjs[2]
+            matcher = moods[2]
+
+          case adjs[3]
+            matcher = moods[3]
+
+          case adjs[4]
+            matcher = moods[4]
+
+          default 
+            matcher = ''
+
+        msg.reply new Speak().getStatement(matcher)
     else 
       msg.reply new Speak().getStatement()
 
