@@ -10,16 +10,33 @@
 'use strict';
 
 var WordException = require('./WordException');
+var name, token, description, action, list, exceptions;
+/**
+ * Throws an error message
+ * @param    String    Error Message
+ */
+function requirementFailed(message) {
+  throw new Error(message);
+}
 
-var SpeechLibrary = function (name, token, description, list, action, exceptions) {
-    this.name = name || requirementFailed('Name is required');
-    this.token = token || requirementFailed('Token is required');
-    this.description = description || '';
-    this.action = action || function (statement, position, mood, speak) {
-        return getRandomItem(this.list);
-    };
-    this.list = list || [];
-    this.exceptions = exceptions || new WordException();
+/**
+ * Returns a random element from an arrary
+ * @param    Array    List to use (defaults to the internal SpeechLibrary list)
+ * @returns    String
+ */
+function getRandomItem(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+function SpeechLibrary(name, token, description, list, action, exceptions) {
+  name = name || requirementFailed('Name is required');
+  token = token || requirementFailed('Token is required');
+  description = description || '';
+  action = action || function (statement, position, mood, speak) {
+    return getRandomItem(list);
+  };
+  list = list || [];
+  exceptions = exceptions || new WordException();
 }
 
 module.exports = SpeechLibrary;
