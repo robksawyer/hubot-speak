@@ -22,10 +22,10 @@ Speak = require '../deps/Speak.js'
 
 module.exports = (robot) ->
 
-  robot.respond /say something stupid/, (msg) ->
+  robot.hear /say something stupid/i, (msg) ->
     msg.send new Speak().getStatement(null, 15)
 
-  robot.respond /say something ([A-Z]||[a-z]*)?/, (msg) ->
+  robot.hear /say something ([A-Z]||[a-z]*)?/i, (msg) ->
     speaker = new Speak()
     if msg.match[1] 
       adjs = ['angry', 'jealous', 'fearful', 'paranoid', 'curious']

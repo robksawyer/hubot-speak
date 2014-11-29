@@ -13,5 +13,5 @@ describe 'speak', ->
     require('../src/speak')(@robot)
 
   it 'registers a respond listener', ->
-    expect(@robot.respond).to.have.been.calledWith(/say something ([A-Z]||[a-z]*)?/)
-    expect(@robot.respond).to.have.been.calledWith(/say something stupid/)
+    expect(@robot.hear).to.have.been.calledWith(/say something ([A-Z]||[a-z]*)?/i)
+    expect(@robot.hear).to.have.been.calledWith(/say something stupid/i)
