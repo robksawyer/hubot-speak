@@ -7,8 +7,11 @@
  * @param    Array            List of words
  * @param    WordException    A WordException SpeakComponent
  */
+'use strict';
+
+var WordException = require('./WordException');
+
 var SpeechLibrary = function (name, token, description, list, action, exceptions) {
-    'use strict';
     this.name = name || requirementFailed('Name is required');
     this.token = token || requirementFailed('Token is required');
     this.description = description || '';

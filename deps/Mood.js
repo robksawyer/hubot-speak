@@ -6,7 +6,9 @@
  * @param    Array            List of emoticons.
  * @param    WordException    A WordException SpeakComponent
  */
-var Mood = function (name, influencers, punctuations, emoticons, filter, exceptions) {
+ var WordException = require('./WordException');
+ 
+ function Mood (name, influencers, punctuations, emoticons, filter, exceptions) {
     'use strict';
     this.name = name || requirementFailed('Name is required');
     this.influencers = influencers || [];

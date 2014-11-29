@@ -1,3 +1,5 @@
+'use strict';
+
 var Mood = require('./Mood');
 var SpeechLibrary = require('./SpeechLibrary');
 var WordException = require('./WordException');
@@ -8,7 +10,6 @@ var WordException = require('./WordException');
  * @returns    String
  */
 function getRandomItem(list) {
-    'use strict';
     return list[Math.floor(Math.random() * list.length)];
 }
 
@@ -19,7 +20,6 @@ function getRandomItem(list) {
  * @returns    Number
  */
 function getRandomRange(min, max) {
-    'use strict';
     return Math.random() * (max - min) + min;
 }
 
@@ -32,7 +32,6 @@ function getRandomRange(min, max) {
  * @returns    String    Spliced string
  */
 function spliceString(str, index, count, add) {
-    'use strict';
     return str.slice(0, index) + add + str.slice(index + count);
 }
 
@@ -67,15 +66,13 @@ function getLastWord(statement, start) {
  * @param    String    Error Message
  */
 function requirementFailed(message) {
-    'use strict';
     throw new Error(message);
 }
 
 /**
  * A collection of SpeakComponents.
  */
-var Speak = function (libraries, moods, statements, segments) {
-    'use strict';
+function Speak (libraries, moods, statements, segments) {
     // SpeechLibraries
     this.libraries = libraries || [
         new SpeechLibrary('sources', 's', 'context of origin', 
@@ -296,7 +293,6 @@ var Speak = function (libraries, moods, statements, segments) {
  * @returns    Mood
  */
 Speak.prototype.getMood = function (mood) {
-    'use strict';
     if (mood === undefined || mood === null) {
         return getRandomItem(this.moods);
     }
@@ -317,7 +313,6 @@ Speak.prototype.getMood = function (mood) {
  * @returns  SpeechLibrary
  */
 Speak.prototype.getLibrary = function (library) {
-    'use strict';
     if (library === undefined || library === null) {
         return getRandomItem(this.libraries);
     }
@@ -338,7 +333,6 @@ Speak.prototype.getLibrary = function (library) {
  * @return    String
  */
 Speak.prototype.expandTokens = function (template, stupidity, mood) {
-    'use strict';
     var position = template.search('%'), cursor, code, token, word, library;
     while(position !== -1) {
         // While tokens exist in the template
@@ -378,7 +372,6 @@ Speak.prototype.expandTokens = function (template, stupidity, mood) {
  * @returns  String
  */
 Speak.prototype.getStatement = function (moodName, stupidity, statements, segments) {
-    'use strict';
     var mood = this.getMood(moodName),
         stupidity = stupidity || 0,
         statements = statements || this.statements,

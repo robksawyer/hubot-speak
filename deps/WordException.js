@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * A list of word exceptions/triggers for a SpeakComponents.
  * @param    Object    Dictionary of callbacks for specific words/regular expressions as the property.
@@ -12,7 +14,6 @@ var WordException = function(dictionary) {
  * @returns    String    Statement
  */
 WordException.prototype.find = function (statement) {
-    'use strict';
     var i, results;
     for (i in this.dictionary) {
         if (this.dictionary.hasOwnProperty(i)) {
