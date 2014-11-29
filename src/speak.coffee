@@ -18,7 +18,7 @@
 # 
 # Note: This is based on the work from CodeOtter https://github.com/CodeOtter/speak
 
-Speak = require '../script/Speak.js'
+Speak = require './Speaker.js'
 
 module.exports = (robot) ->
 
