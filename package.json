@@ -1,7 +1,7 @@
 {
   "name": "hubot-speak",
   "description": "A random sentence generator based on https://github.com/CodeOtter/speak.",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "author": "robksawyer <robksawyer@gmail.com>",
   "license": "MIT",
   "keywords": [
