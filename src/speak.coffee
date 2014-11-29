@@ -18,7 +18,7 @@
 # 
 # Note: This is based on the work from CodeOtter https://github.com/CodeOtter/speak
 
-Speak = require '../src/speak.js'
+Speak = require '../script/speak.js'
 
 module.exports = (robot) ->
   robot.respond /say something ([A-Z]||[a-z]*)?/, (msg) ->
