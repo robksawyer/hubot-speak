@@ -18,20 +18,22 @@
 # 
 # Note: This is based on the work from CodeOtter https://github.com/CodeOtter/speak
 
-Speak = require '../script/speak.js'
+Speak = require '../script/Speak.js'
 
 module.exports = (robot) ->
-  
+
   robot.respond /say something stupid/, (msg) ->
-    msg.reply new Speak().getStatement(null, 15)
+    speaker = new Speak()
+    msg.reply speaker.getStatement(null, 15)
     return;
 
   robot.respond /say something ([A-Z]||[a-z]*)?/, (msg) ->
+    speaker = new Speak()
     if msg.match[1] 
       adjs = ['angry', 'jealous', 'fearful', 'paranoid', 'curious']
       moods = ['anger', 'jealousy', 'fear', 'paranoia', 'curiosity', 'joyful', 'excited', 'calm', 'ashamed', 'apathetic', 'logical']
       if moods.indexOf(msg.match[0].trim()) >= -1
-        msg.reply new Speak().getStatement msg.match[0].trim()
+        msg.reply speaker.getStatement msg.match[0].trim()
       else 
         switch msg.match[0].trim()
           when adjs[0] then matcher = moods[0]
@@ -41,6 +43,6 @@ module.exports = (robot) ->
           when adjs[4] then matcher = moods[4]
           else matcher = ''
 
-        msg.reply new Speak().getStatement(matcher)
+        msg.reply speaker.getStatement(matcher)
     else 
-      msg.reply new Speak().getStatement()
+      msg.reply speaker.getStatement()
