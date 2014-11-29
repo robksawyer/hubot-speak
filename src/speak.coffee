@@ -21,6 +21,11 @@
 Speak = require '../script/speak.js'
 
 module.exports = (robot) ->
+  
+  robot.respond /say something stupid/, (msg) ->
+    msg.reply new Speak().getStatement(null, 15)
+    return;
+
   robot.respond /say something ([A-Z]||[a-z]*)?/, (msg) ->
     if msg.match[1] 
       adjs = ['angry', 'jealous', 'fearful', 'paranoid', 'curious']
@@ -39,6 +44,3 @@ module.exports = (robot) ->
         msg.reply new Speak().getStatement(matcher)
     else 
       msg.reply new Speak().getStatement()
-
-  robot.respond /say something stupid/, (msg) ->
-    msg.reply new Speak().getStatement(null, 15)
