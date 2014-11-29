@@ -22,20 +22,16 @@ Speak = require '../deps/Speak.js'
 
 module.exports = (robot) ->
 
-  robot.respond /say something/, (msg) ->
-    msg.reply 'Want to hear something random?'
-
   robot.respond /say something stupid/, (msg) ->
-    speaker = new Speak()
-    msg.reply speaker.getStatement(null, 15)
+    msg.send new Speak().getStatement(null, 15)
 
   robot.respond /say something ([A-Z]||[a-z]*)?/, (msg) ->
     speaker = new Speak()
     if msg.match[1] 
       adjs = ['angry', 'jealous', 'fearful', 'paranoid', 'curious']
       moods = ['anger', 'jealousy', 'fear', 'paranoia', 'curiosity', 'joyful', 'excited', 'calm', 'ashamed', 'apathetic', 'logical']
-      if moods.indexOf(msg.match[0].trim()) >= -1
-        msg.reply speaker.getStatement msg.match[0].trim()
+      if moods.indexOf(msg.match[1].trim()) >= -1
+        msg.send speaker.getStatement msg.match[1].trim()
       else 
         switch msg.match[0].trim()
           when adjs[0] then matcher = moods[0]
@@ -45,6 +41,6 @@ module.exports = (robot) ->
           when adjs[4] then matcher = moods[4]
           else matcher = ''
 
-        msg.reply speaker.getStatement(matcher)
+        msg.send speaker.getStatement(matcher)
     else 
-      msg.reply speaker.getStatement()
+      msg.send speaker.getStatement()
