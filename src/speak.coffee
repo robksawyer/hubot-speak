@@ -18,34 +18,23 @@
 # 
 # Note: This is based on the work from CodeOtter https://github.com/CodeOtter/speak
 
-Speak = require('../src/speak.js')
+Speak = require '../src/speak.js'
 
 module.exports = (robot) ->
   robot.respond /say something ([A-Z]||[a-z]*)?/, (msg) ->
-    if(msg.match[1])
+    if msg.match[1] 
       adjs = ['angry', 'jealous', 'fearful', 'paranoid', 'curious']
       moods = ['anger', 'jealousy', 'fear', 'paranoia', 'curiosity', 'joyful', 'excited', 'calm', 'ashamed', 'apathetic', 'logical']
-      if(moods.indexOf(msg.match[0].trim()) >= -1)
-        msg.reply new Speak().getStatement(msg.match[0].trim())
+      if moods.indexOf(msg.match[0].trim()) >= -1
+        msg.reply new Speak().getStatement msg.match[0].trim()
       else 
         switch msg.match[0].trim()
-          when adjs[0]
-            then matcher = moods[0]
-
-          when adjs[1]
-            then matcher = moods[1]
-
-          when adjs[2]
-            then matcher = moods[2]
-
-          when adjs[3]
-            then matcher = moods[3]
-
-          when adjs[4]
-            then matcher = moods[4]
-
-          else
-            matcher = ''
+          when adjs[0] then matcher = moods[0]
+          when adjs[1] then matcher = moods[1]
+          when adjs[2] then matcher = moods[2]
+          when adjs[3] then matcher = moods[3]
+          when adjs[4] then matcher = moods[4]
+          else matcher = ''
 
         msg.reply new Speak().getStatement(matcher)
     else 

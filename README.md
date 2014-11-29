@@ -19,6 +19,6 @@ Then add **hubot-speak** to your `external-scripts.json`:
 ## Sample Interaction
 
 ```
-user1>> hubot hello
+user1>> hubot say something nice
 hubot>> hello!
 ```
