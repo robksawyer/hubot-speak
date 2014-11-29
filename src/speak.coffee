@@ -28,23 +28,23 @@ module.exports = (robot) ->
       if(moods.indexOf(msg.match[0].trim()) >= -1)
         msg.reply new Speak().getStatement(msg.match[0].trim())
       else 
-        switch(msg.match[0].trim())
-          case adjs[0]
-            matcher = moods[0]
+        switch msg.match[0].trim()
+          when adjs[0]
+            then matcher = moods[0]
 
-          case adjs[1]
-            matcher = moods[1]
+          when adjs[1]
+            then matcher = moods[1]
 
-          case adjs[2]
-            matcher = moods[2]
+          when adjs[2]
+            then matcher = moods[2]
 
-          case adjs[3]
-            matcher = moods[3]
+          when adjs[3]
+            then matcher = moods[3]
 
-          case adjs[4]
-            matcher = moods[4]
+          when adjs[4]
+            then matcher = moods[4]
 
-          default 
+          else
             matcher = ''
 
         msg.reply new Speak().getStatement(matcher)
