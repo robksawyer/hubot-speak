@@ -1,5 +1,7 @@
 # hubot-speak
 
+WARNING: This is borked.
+
 A random sentence generator based on https://github.com/CodeOtter/speak.
 
 See [`src/speak.coffee`](src/speak.coffee) for full documentation.

@@ -9,7 +9,7 @@
 'use strict';
 
 var WordException = require('./WordException');
-
+var name, influencers, punctuations, emoticons, filter, exceptions;
 /**
  * Throws an error message
  * @param    String    Error Message
@@ -19,14 +19,14 @@ function requirementFailed(message) {
 }
 
 function Mood(name, influencers, punctuations, emoticons, filter, exceptions) {
-  this.name = name || requirementFailed('Name is required');
-  this.influencers = influencers || [];
-  this.punctuations = punctuations || [];
-  this.emoticons = emoticons || [];
-  this.filter = filter || function (statement) {
+  name = name || requirementFailed('Name is required');
+  influencers = influencers || [];
+  punctuations = punctuations || [];
+  emoticons = emoticons || [];
+  filter = filter || function (statement) {
     return statement;
   };
-  this.exceptions = exceptions || new WordException();
+  exceptions = exceptions || new WordException();
 }
 
 module.exports = Mood;

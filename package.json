@@ -15,10 +15,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/hubot-scripts/hubot-speak.git"
+    "url": "git://github.com/robksawyer/hubot-speak.git"
   },
   "bugs": {
-    "url": "https://github.com/hubot-scripts/hubot-speak/issues"
+    "url": "https://github.com/robksawyer/hubot-speak/issues"
   },
   "dependencies": {
     "coffee-script": "~1.6"
